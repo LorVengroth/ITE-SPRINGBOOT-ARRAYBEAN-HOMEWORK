@@ -36,13 +36,13 @@ public class CoffeeController {
     // to search localhost:8081/api/v1/coffees/search?name=late&id=1
 
     @GetMapping("/search")
-    public List<CoffeeResponse> searchCoffeeByName(
-            @RequestParam String name
-//            @RequestParam Integer price
+    public List<CoffeeResponse> searchCoffeeByNameAndPrice(
+            @RequestParam String name,
+            @RequestParam Double price
     ){
         log.info("GET name: {}" , name);
-//        log.info("GET ID: {}" , id);
-        return coffeeService.getCoffeeByName(name) ;
+        log.info("GET ID: {}" , price);
+        return coffeeService.getCoffeeByNameAndPrice(name , price) ;
     }
 
 

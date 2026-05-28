@@ -10,5 +10,5 @@ import java.util.List;
 public interface CoffeeService {
     List<Coffee> getCoffees();
     CoffeeResponse getCoffeeById(Integer id);
-    List<CoffeeResponse > getCoffeeByName(String name);
+    List<CoffeeResponse > getCoffeeByNameAndPrice(String name , Double price);
 }

@@ -40,6 +40,19 @@ public class CoffeeRepository {
                 ;
     }
 
+    public List<CoffeeResponse> searchByNameAndPrice(String name, Double price) {
+
+        return beanCoffee()
+                .stream()
+                .filter(coffee ->
+                        coffee.getName().equalsIgnoreCase(name)
+                                && coffee.getPrice().equals(price)
+                )
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+
 
     private CoffeeResponse mapToResponse(Coffee coffee) {
 

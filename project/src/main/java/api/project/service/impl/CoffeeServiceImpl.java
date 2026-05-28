@@ -33,11 +33,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     }
 
     @Override
-    public List<CoffeeResponse> getCoffeeByName(String name) {
-
-        return coffeeRepository.findByName(name);
+    public List<CoffeeResponse> getCoffeeByNameAndPrice(String name, Double price) {
+        return coffeeRepository.searchByNameAndPrice(name , price);
     }
-
-
-
 }
