@@ -28,34 +28,16 @@ public class CoffeeServiceImpl implements CoffeeService {
     public CoffeeResponse getCoffeeById(Integer id){
 
 
-
-        return  coffeeRepository.beanCoffee()
-                .stream()
-                .filter( coffee -> coffee.getId().equals(id))
-                .findFirst()
-                .map(this::mapToCoffeeResponse)
-                .orElseThrow( () -> new RuntimeException("not found") );
+    return coffeeRepository.findById(id);
 
     }
 
     @Override
     public List<CoffeeResponse> getCoffeeByName(String name) {
 
-        return coffeeRepository.beanCoffee()
-                .stream()
-                .filter(coffee -> coffee.getName().equalsIgnoreCase(name))
-                .map(this::mapToCoffeeResponse)
-                .toList();
+        return coffeeRepository.findByName(name);
     }
 
 
-    private CoffeeResponse mapToCoffeeResponse(Coffee coffee) {
 
-        CoffeeResponse response = new CoffeeResponse();
-        response.setName(coffee.getName());
-        response.setDescription(coffee.getDescription());
-        response.setPrice(coffee.getPrice());
-
-        return response;
-    }
 }
