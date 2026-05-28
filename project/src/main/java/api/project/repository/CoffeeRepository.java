@@ -28,7 +28,7 @@ public class CoffeeRepository {
                 .filter(coffee -> coffee.getId() == id)
                 .map(this::mapToResponse)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(()-> new RuntimeException("cofee not found with id :" +id) );
     }
 
     // Search by Name
@@ -38,7 +38,8 @@ public class CoffeeRepository {
                 .stream()
                 .filter(coffee -> coffee.getName().equalsIgnoreCase(name))
                 .map(this::mapToResponse)
-                .toList();
+                .toList()
+                ;
     }
 
     // Map Coffee -> CoffeeResponse
