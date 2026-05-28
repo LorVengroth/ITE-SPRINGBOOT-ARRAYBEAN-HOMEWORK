@@ -20,7 +20,6 @@ public class CoffeeRepository {
         return Arrays.asList(coffee1, coffee2, coffee3);
     }
 
-    // Search by ID
     public CoffeeResponse findById(int id) {
 
         return beanCoffee()
@@ -31,7 +30,6 @@ public class CoffeeRepository {
                 .orElseThrow(()-> new RuntimeException("cofee not found with id :" +id) );
     }
 
-    // Search by Name
     public List<CoffeeResponse> findByName(String name) {
 
         return beanCoffee()
@@ -42,7 +40,7 @@ public class CoffeeRepository {
                 ;
     }
 
-    // Map Coffee -> CoffeeResponse
+
     private CoffeeResponse mapToResponse(Coffee coffee) {
 
         CoffeeResponse response = new CoffeeResponse();
