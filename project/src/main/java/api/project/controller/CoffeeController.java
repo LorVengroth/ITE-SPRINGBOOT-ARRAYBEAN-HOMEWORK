@@ -3,8 +3,11 @@ package api.project.controller;
 
 import api.project.domain.Coffee;
 import api.project.dto.CoffeeResponse;
+import api.project.dto.CreateCoffeeRequest;
 import api.project.service.CoffeeService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +24,7 @@ public class CoffeeController {
     }
 
     @GetMapping
-    public List<Coffee> getCoffees(){
+    public List<CoffeeResponse> getCoffees(){
         return coffeeService.getCoffees();
     }
 
@@ -37,12 +40,19 @@ public class CoffeeController {
 
     @GetMapping("/search")
     public List<CoffeeResponse> searchCoffeeByNameAndPrice(
-            @RequestParam String name,
-            @RequestParam Double price
+            @RequestParam(required = false, defaultValue = "") String name ,
+            @RequestParam(required = false, defaultValue = "0") Double price
     ){
         log.info("GET name: {}" , name);
         log.info("GET ID: {}" , price);
         return coffeeService.getCoffeeByNameAndPrice(name , price) ;
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public CoffeeResponse createCoffee(
+            @Valid @RequestBody CreateCoffeeRequest createCoffeeRequest){
+        return coffeeService.createCoffee(createCoffeeRequest);
     }
 
 

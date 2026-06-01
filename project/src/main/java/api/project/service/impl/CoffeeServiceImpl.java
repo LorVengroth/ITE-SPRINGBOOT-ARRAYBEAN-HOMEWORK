@@ -2,6 +2,7 @@ package api.project.service.impl;
 
 import api.project.domain.Coffee;
 import api.project.dto.CoffeeResponse;
+import api.project.dto.CreateCoffeeRequest;
 import api.project.repository.CoffeeRepository;
 import api.project.service.CoffeeService;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     }
 
     @Override
-    public List<Coffee> getCoffees() {
+    public List<CoffeeResponse> getCoffees() {
         return coffeeRepository.beanCoffee();
     }
 
@@ -35,5 +36,10 @@ public class CoffeeServiceImpl implements CoffeeService {
     @Override
     public List<CoffeeResponse> getCoffeeByNameAndPrice(String name, Double price) {
         return coffeeRepository.searchByNameAndPrice(name , price);
+    }
+
+    @Override
+    public CoffeeResponse createCoffee(CreateCoffeeRequest createCoffeeRequest) {
+        return coffeeRepository.CreateCoffee(createCoffeeRequest);
     }
 }
