@@ -1,6 +1,6 @@
-package api.project.exception;
-
-public record ValidationError(
-        String field,
-        String message
-) {}
+//package api.project.exception;
+//
+//public record ValidationError(
+//        String field,
+//        String message
+//) {}

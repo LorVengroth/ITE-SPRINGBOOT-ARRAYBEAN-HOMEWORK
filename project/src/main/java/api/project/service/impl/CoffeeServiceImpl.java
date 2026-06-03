@@ -3,6 +3,7 @@ package api.project.service.impl;
 import api.project.domain.Coffee;
 import api.project.dto.CoffeeResponse;
 import api.project.dto.CreateCoffeeRequest;
+import api.project.dto.UpdateCoffeeRequest;
 import api.project.repository.CoffeeRepository;
 import api.project.service.CoffeeService;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,16 @@ public class CoffeeServiceImpl implements CoffeeService {
     @Override
     public CoffeeResponse createCoffee(CreateCoffeeRequest createCoffeeRequest) {
         return coffeeRepository.CreateCoffee(createCoffeeRequest);
+    }
+
+
+    @Override
+    public CoffeeResponse updateCoffeeByID(UpdateCoffeeRequest updateCoffeeRequest , Integer id) {
+        return coffeeRepository.UpdateCoffeeById(updateCoffeeRequest , id);
+    }
+
+    @Override
+    public CoffeeResponse deleteCoffeeById(Integer id) {
+        return coffeeRepository.deleteCoffeeById(id);
     }
 }

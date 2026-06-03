@@ -4,6 +4,7 @@ package api.project.controller;
 import api.project.domain.Coffee;
 import api.project.dto.CoffeeResponse;
 import api.project.dto.CreateCoffeeRequest;
+import api.project.dto.UpdateCoffeeRequest;
 import api.project.service.CoffeeService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +56,21 @@ public class CoffeeController {
         return coffeeService.createCoffee(createCoffeeRequest);
     }
 
+
+    @PatchMapping("/{id}")
+    public CoffeeResponse updateCoffeeById(
+            @Valid @RequestBody UpdateCoffeeRequest updateCoffeeRequest ,
+            @PathVariable Integer id
+            ){
+        return coffeeService.updateCoffeeByID(updateCoffeeRequest , id);
+    }
+
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteCoffeeById(@PathVariable Integer id){
+     coffeeService.deleteCoffeeById(id);
+    }
 
 
 }
